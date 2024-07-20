@@ -1,0 +1,96 @@
+﻿@model Product
+<Partial name="_Notification" />
+
+<form method="post" asp-action="AddToCard" asp-route-id="@Model.Id">
+    <div class="card shadow border-0 mt-4">
+        <div class="card-header bg-black bg-gradient text-light py-4">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h3 class="text-white text-uppercase">@Model.Title</h3>
+                    <p class="text-warning fw-semibold mb-0">@Model.Author</p>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="py-3">
+                <div class="row">
+                    <div class="col-6 col-md-2 offset-lg-1 pb-2">
+                        <a asp-action="index" class="btn btn-outline-warning bg-gradient mb-3 fw-semibold btn-sm text-uppercase">
+                            <small>Back to home</small>
+                        </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-lg-3 offset-lg-1 text-center mb-3">
+                        <img src="@Model.ProductUrl" width="100%" class="rounded" />
+                    </div>
+                    <div class="col-12 col-lg-6 offset-lg-1">
+                        <div class="col-12 col-md-6 pb-4">
+                            <span class="badge text-warning text-opacity-75" style="font-size:20px">@Model.Category.Name</span>
+                        </div>
+                        <div class="row ps-2">
+                            <h6 class="text-white  ">ISBN : @Model.ISBN</h6>
+                        </div>
+                        <div class="row ps-2">
+                            <h6 class="text-dark pb-2">
+                                List Price:
+                                <span class="text-decoration-line-through">
+                                    @Model.price <span>$</span>
+                                </span>
+                            </h6>
+                        </div>
+                        <div class="row text-center ps-2">
+                            <div class="p-1 col-3 col-lg-2  border-bottom">
+                                <div class="text-dark  fw-semibold">Quantity</div>
+                            </div>
+                            <div class="p-1 col-3 col-lg-2  border-bottom">
+                                <div class="text-dark  fw-semibold">1-50</div>
+                            </div>
+                            <div class="p-1 col-3 col-lg-2  border-bottom">
+                                <div class="text-dark  fw-semibold">51-100</div>
+                            </div>
+                            <div class="p-1 col-3 col-lg-2  border-bottom">
+                                <div class="text-dark  fw-semibold">100+</div>
+                            </div>
+                        </div>
+                        <div class="row text-center ps-2">
+                            <div class="p-1 col-3 col-lg-2  text-warning fw-bold">
+                                <div>Price</div>
+                            </div>
+                            <div class="p-1 col-3 col-lg-2 text-warning fw-bold">
+                                <div>@Model.price <span>$</span></div>
+                            </div>
+                            <div class="p-1 col-3 col-lg-2 text-warning fw-bold">
+                                <div>@Model.price50 <span>$</span></div>
+                            </div>
+                            <div class="p-1 col-3 col-lg-2 text-warning fw-bold">
+                                <div>@Model.price100 <span>$</span></div>
+                            </div>
+                        </div>
+                        <div class="row pl-2 my-3">
+                            <p class="lh-sm">@Html.Raw(Model.Description)</p>
+                        </div>
+                        <div class="row pl-2 mb-3">
+                            <div class="col-md-4">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text bg-opacity-75 bg-warning text-white-75 border-0 fw-semibold"
+                                          id="inputGroup-sizing-default">
+                                        Count
+                                    </span>
+                                    <input type="number" value="1" name="count" class="form-control text-end"
+                                           aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-md-6 pb-1">
+                                <input type="submit" value="Add to Cart" ty class="btn btn-warning bg-gradient w-100 py-2 text-uppercase fw-semibold" />
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

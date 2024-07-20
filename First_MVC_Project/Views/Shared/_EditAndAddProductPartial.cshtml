@@ -1,0 +1,127 @@
+﻿@model Product
+
+
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<div class="form-group offset-3 mb-3 col-lg-6">
+    <label asp-for="Title" class="control-label"></label>
+    @if (Model != null)
+    {
+        <input asp-for="Title" value="@Model.Title" class="form-control" />
+    }
+    else
+    {
+        <input asp-for="Title" class="form-control" />
+    }
+    <span asp-validation-for="Title" class="text-danger"></span>
+</div>
+<div class="form-group offset-3 mb-3 col-lg-6">
+    <label asp-for="Description" class="control-label"></label>
+    @if (Model != null)
+    {
+        <textarea asp-for="Description" value="@Model.Description" class="form-control" ></textarea>
+    }
+    else
+    {
+        <textarea asp-for="Description" class="form-control" ></textarea>
+    }
+    <span asp-validation-for="Description" class="text-danger"></span>
+</div>
+
+<div class="form-group offset-3 mb-3 col-lg-6">
+    <label asp-for="ISBN" class="control-label"></label>
+    @if (Model != null)
+    {
+        <input asp-for="ISBN" value="@Model.ISBN" class="form-control" />
+    }
+    else
+    {
+        <input asp-for="ISBN" class="form-control" />
+    }
+    <span asp-validation-for="ISBN" class="text-danger"></span>
+</div>
+<div class="form-group offset-3 mb-3 col-lg-6">
+    <label asp-for="Author" class="control-label"></label>
+    @if (Model != null)
+    {
+        <input asp-for="Author" value="@Model.Author" class="form-control" />
+    }
+    else
+    {
+        <input asp-for="Author" class="form-control" />
+    }
+    <span asp-validation-for="Author" class="text-danger"></span>
+</div>
+
+<div class="form-group offset-3 mb-3 col-lg-6">
+    <label asp-for="price" class="control-label"></label>
+    @if (Model != null)
+    {
+        <input asp-for="price" value="@Model.price" class="form-control" />
+    }
+    else
+    {
+        <input asp-for="price" class="form-control" />
+    }
+    <span asp-validation-for="price" class="text-danger"></span>
+</div>
+<div class="form-group offset-3 mb-3 col-lg-6">
+    <label asp-for="price50" class="control-label"></label>
+    @if (Model != null)
+    {
+        <input asp-for="price50" value="@Model.price50" class="form-control" />
+    }
+    else
+    {
+        <input asp-for="price50" class="form-control" />
+    }
+    <span asp-validation-for="price50" class="text-danger"></span>
+</div>
+<div class="form-group offset-3 mb-3 col-lg-6">
+    <label asp-for="price100" class="control-label"></label>
+    @if (Model != null)
+    {
+        <input asp-for="price100" value="@Model.price100" class="form-control" />
+    }
+    else
+    {
+        <input asp-for="price100" class="form-control" />
+    }
+    <span asp-validation-for="price100" class="text-danger"></span>
+</div>
+<div class="form-group offset-3 mb-3 col-lg-6">
+    <label asp-for="Coantity" class="control-label"></label>
+    @if (Model != null)
+    {
+        <input asp-for="Coantity" value="@Model.Coantity" class="form-control" />
+    }
+    else
+    {
+        <input asp-for="Coantity" class="form-control" />
+    }
+    <span asp-validation-for="Coantity" class="text-danger"></span>
+</div>
+
+
+<div class="form-group offset-3 mb-3 col-lg-6">
+    @if (Model != null)
+    {
+        <select asp-for="CategoryId" asp-items="@ViewBag.categories" onselect="@Model.CategoryId" class="form-select">
+            <option>--Category--</option>
+        </select>
+    }
+    else
+    {
+            <select asp-for="CategoryId" asp-items="@ViewBag.categories" onselect="" class="form-select">
+                <option>--Category--</option>
+            </select>
+    }
+        <span asp-validation-for="@Model.CategoryId" class="text-danger"></span>
+</div>
+
+
+<div class="form-group offset-3 mb-3 col-lg-6 ">
+    <label asp-for="ProductUrl" class="control-label"></label>
+        <input type="file" name="file" class="form-control " />
+    <span asp-validation-for="ProductUrl" class="text-danger"></span>
+</div>

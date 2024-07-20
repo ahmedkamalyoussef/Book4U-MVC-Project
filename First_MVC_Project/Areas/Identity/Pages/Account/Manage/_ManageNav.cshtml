@@ -1,0 +1,73 @@
+﻿@using First_MVC_Project.Models
+@inject SignInManager<AppUser> SignInManager
+@{
+    var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
+}
+
+<div class="dropdown d-md-none">
+    <button class="btn btn-outline-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="bi bi-list"></i>
+    </button>
+    <ul class="dropdown-menu">
+        <li><a class="dropdown-item" id="profile" asp-page="./Index">Profile</a></li>
+        <li><a class="dropdown-item" id="email" asp-page="./Email">Email</a></li>
+        <li><a class="dropdown-item" id="change-password" asp-page="./ChangePassword">Password</a></li>
+        @if (hasExternalLogins)
+        {
+            <li id="external-logins"><a class="dropdown-item" id="external-login" asp-page="./ExternalLogins">External logins</a></li>
+        }
+        <li><a class="dropdown-item" id="two-factor" asp-page="./TwoFactorAuthentication">Two-factor authentication</a></li>
+        <li><a class="dropdown-item" id="personal-data" asp-page="./PersonalData">Personal data</a></li>
+    </ul>
+</div>
+
+<div class="nav d-none d-md-flex">
+    <ul class="nav nav-pills flex-column">
+        <li class="nav-item"><a class="nav-link " id="profile" asp-page="./Index">Profile</a></li>
+        <li class="nav-item"><a class="nav-link " id="email" asp-page="./Email">Email</a></li>
+        <li class="nav-item"><a class="nav-link " id="change-password" asp-page="./ChangePassword">Password</a></li>
+        @if (hasExternalLogins)
+        {
+            <li id="external-logins" class="nav-item"><a id="external-login" class="nav-link " asp-page="./ExternalLogins">External logins</a></li>
+        }
+        <li class="nav-item"><a class="nav-link " id="two-factor" asp-page="./TwoFactorAuthentication">Two-factor authentication</a></li>
+        <li class="nav-item"><a class="nav-link " id="personal-data" asp-page="./PersonalData">Personal data</a></li>
+    </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+@* @using First_MVC_Project.Models
+@inject SignInManager<AppUser> SignInManager
+@{
+    var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
+}
+<ul class="nav nav-pills flex-column">
+    <li class="nav-item"><a class="nav-link " id="profile" asp-page="./Index">Profile</a></li>
+    <li class="nav-item"><a class="nav-link " id="email" asp-page="./Email">Email</a></li>
+    <li class="nav-item"><a class="nav-link " id="change-password" asp-page="./ChangePassword">Password</a></li>
+    @if (hasExternalLogins)
+    {
+        <li id="external-logins" class="nav-item"><a id="external-login" class="nav-link " asp-page="./ExternalLogins">External logins</a></li>
+    }
+    <li class="nav-item"><a class="nav-link " id="two-factor" asp-page="./TwoFactorAuthentication">Two-factor authentication</a></li>
+    <li class="nav-item"><a class="nav-link " id="personal-data" asp-page="./PersonalData">Personal data</a></li>
+</ul>
+ *@
+
+@* @ManageNavPages.IndexNavClass(ViewContext)
+@ManageNavPages.EmailNavClass(ViewContext)
+@ManageNavPages.ChangePasswordNavClass(ViewContext)
+
+@ManageNavPages.ExternalLoginsNavClass(ViewContext)
+
+@ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext)
+@ManageNavPages.PersonalDataNavClass(ViewContext) *@

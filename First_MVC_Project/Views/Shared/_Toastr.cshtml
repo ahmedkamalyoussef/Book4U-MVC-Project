@@ -1,0 +1,15 @@
+﻿@* @if(TempData["success"]!=null){
+    <Partial name="_ValidationScriptsPartial"/>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.js"></script>
+    <script type="text/javascript">
+        toastr.success('@TempData["success"]');
+        </script>
+}
+@if (TempData["error"] != null)
+{
+    <Partial name="_ValidationScriptsPartial" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.js"></script>
+    <script type="text/javascript">
+        toastr.error('@TempData["success"]');
+    </script>
+} *@

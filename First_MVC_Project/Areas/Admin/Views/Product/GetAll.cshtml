@@ -1,0 +1,61 @@
+﻿@model List<Product>
+<Partial name="_Notification" />
+
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-md-6">
+            <h2 class="text-warning">Products List</h2>
+        </div>
+        <div class="col-md-6 text-end">
+            <a asp-action="create" class="btn btn-warning">
+                <i class="bi bi-plus-circle"></i> Add Product
+            </a>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        Title
+                    </th>
+                    <th>
+                        ISBN
+                    </th>
+                    <th>
+                        Author
+                    </th>
+                    <th>
+                        Category
+                    </th>
+                    <th>
+                        Price
+                    </th>
+                    <th>
+                        Coantity
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var prod in Model)
+                {
+                    <tr>
+                        <td>@prod.Title</td>
+                        <td>@prod.ISBN</td>
+                        <td>@prod.Author</td>
+                        <td>@prod.Category.Name</td>
+                        <td>@prod.price</td>
+                        <td>@prod.Coantity</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a asp-controller="product" asp-action="edit" asp-route-id="@prod.Id" class="btn btn-warning mx-2"><i class="bi bi-pencil-square"></i> Edit</a>
+                                <a asp-controller="product" asp-action="delete" asp-route-id="@prod.Id" class="btn btn-danger mx-2"><i class="bi bi-trash3"></i> Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

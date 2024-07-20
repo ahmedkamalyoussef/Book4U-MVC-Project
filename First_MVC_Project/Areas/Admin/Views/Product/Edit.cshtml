@@ -1,0 +1,61 @@
+﻿@model Product
+<Partial name="_Notification" />
+
+<div class="card show border-0 mt-4">
+    <div class="card-header  bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h4 class="text-white py-2">Update Product</h4>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        
+        <form method="post" asp-area="Admin" asp-controller="product" asp-action="Edit" asp-route-id="@Model.Id" enctype="multipart/form-data" class="row">
+            <div class="border p-3">
+                <div class="fixx">
+                <div class="row">
+                    <div class="col justify-content-center" style="margin-left:40%">
+                        <img src="@Model.ProductUrl" style="border-radius:10%;box-shadow:5px 7px " width="200px" height="auto" />
+                    </div>
+                </div>
+                
+                 <input asp-for="Id" type="hidden" />
+                <input asp-for="@Model.ProductUrl" type="hidden" />
+                 <Partial name="_EditAndAddProductPartial" model="@Model" />
+
+
+
+                <div class="row justify-content-center mt-4">
+                    <div class="col-6">
+                        <input type="submit" value="Update" class="btn btn-warning form-control" />
+                    </div>
+                </div>
+                <div class="row justify-content-center mt-2">
+                    <div class="col-6">
+                        <a class="btn btn-secondary form-control" asp-action="getall">Back to List</a>
+                    </div>
+
+
+
+
+
+                @* <div class="row">
+                    <div class="offset-3 col-3">
+                        <input type="submit" value="Update" class="btn btn-warning form-control" />
+                    </div>
+                    <div class="col-3">
+                        <a class="btn btn-secondary form-control" asp-action="getall">Back to List</a>
+                    </div>
+                </div> *@
+                    </div>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+

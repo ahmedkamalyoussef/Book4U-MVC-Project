@@ -1,0 +1,84 @@
+﻿@* @model IEnumerable<Product>
+
+
+ @foreach (var cat in (List<Category>)ViewData["categories"])
+{
+    <h2>@cat.Name</h2>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 d-flex flex-row flex-nowrap overflow-auto">
+            @foreach (var prod in Model)
+            {
+                if (cat.Id == prod.CategoryId)
+                {
+                    <div class="col">
+                        <div class="card border-0 p-3 shadow border-top border-5 rounded m-2" style="min-width: 250px;">
+                            <img width="auto" height="350" src="@prod.ProductUrl" class="card-img-top rounded" />
+                            <div class="card-body pb-0">
+                                <div class="pl-1">
+                                    <p class="card-title h6 text-white opacity-75 text-uppercase text-center">@prod.Title</p>
+                                    <p class="card-title text-warning text-center" style="font-size:15px">By <b>@prod.Author</b></p>
+                                </div>
+                                <div class="pl-1">
+                                    <p class="text-white text-opacity-75 text-uppercase text-center mb-0">
+                                        ListPrice :
+                                        <span class="text-decoration-line-through">
+                                            @prod.price.ToString("c")
+                                        </span> <span>$</span>
+                                    </p>
+                                </div>
+                                <div class="pl-1">
+                                    <p class="text-white text-opacity-75 text-uppercase text-center">As low As : <span>@prod.price100.ToString("c")</span> <span>$</span></p>
+                                </div>
+                            </div>
+                            <a asp-action="Details" asp-route-id="@prod.Id" class="btn btn-warning bg-gradient border-0 form-control">
+                                Details
+                            </a>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+}
+  *@
+
+@model IEnumerable<Product>
+
+@section landing {
+    
+}
+
+
+
+
+
+@foreach (var cat in (List<Category>)ViewData["categories"])
+{
+    <div class="category-section">
+        @if (cat.Products != null)
+        {
+            <h2>@cat.Name
+            </h2>
+
+            <div class="product-scroll-container">
+                <div class="product-list">
+                    @foreach (var prod in Model.Where(p => p.CategoryId == cat.Id))
+                    {
+                        <div class="product-card">
+                            <img src="@prod.ProductUrl" alt="@prod.Title">
+                            <div class="product-details">
+                                <h3 style="text-align:center">@prod.Title</h3>
+                                <center class="author text-warning-emphasis">By <b class="text-warning">@prod.Author</b></center>
+                                <div class="price-section">
+                                    <div class="list-price">List Price: <span class="text-decoration-line-through">@prod.price.ToString("c")</span></div>
+                                    <div class="low-price">As low As: <span>@prod.price100.ToString("c")</span></div>
+                                </div>
+                                <a  asp-action="Details" asp-route-id="@prod.Id" id="btn" class="btn btn-warning">Details</a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <hr />
+        }
+    </div>
+}
+

@@ -1,0 +1,257 @@
+html {
+  font-size: 14px;
+}
+.divider_text:before,
+.divider_text:after{
+    color:white;
+    content:"";
+    flex:1;
+    border-bottom:1px solid #555;
+    box-shadow:0 -2px;
+}
+@media (min-width: 768px) {
+    html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+
+
+/*.card-body {
+    min-height: 300px;
+    min-width: 300px;
+    margin-right: 5px;
+}*/
+
+
+/* Body and general styles */
+body {
+    background-color: #121212;
+    color: #fff;
+}
+
+/* Category section */
+.category-section h2 {
+    color: #fff;
+}
+
+/* Product scroll container */
+.product-scroll-container {
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+    .product-scroll-container::-webkit-scrollbar {
+        display: none;
+    }
+
+/* Product list and card styles */
+.product-list {
+    display: inline-block;
+    padding-bottom: 20px;
+}
+
+.product-card {
+    display: inline-block;
+    width: 220px;
+    height: 410px;
+    background-color: #151515;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    margin-right: 20px;
+    transition: transform 0.5s ease
+}
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+.product-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.product-details {
+    padding: 15px;
+}
+
+    .product-details h3 {
+        font-size: 16px;
+        margin-bottom: 8px;
+        color: #fff;
+    }
+
+    .product-details .author {
+        font-size: 13px;
+        /*color: #bbb;*/
+        margin-bottom: 6px;
+    }
+
+.price-section {
+    /*display: flex;*/
+    /*justify-content: space-between;*/
+    margin-bottom: 8px;
+    text-align:center;
+    padding:-15px;
+}
+
+    .price-section div {
+        font-size: 12px;
+        color: #bbb;
+    }
+
+/* Button styles */
+#btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 8px 0;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    #btn:hover {
+        background-color: #f17014;
+    }
+
+
+
+
+
+
+
+
+
+/* Global Styles */
+body {
+    background-color: #121212; /* Dark background color */
+    color: #fff; /* White text color */
+    font-family: Arial, sans-serif; /* Use a common font family */
+}
+
+a {
+    color: #ffa000; /* Link color */
+}
+
+    a:hover {
+        color: #ffca28; /* Link color on hover */
+    }
+
+/* Card Styles */
+.card {
+    background-color: #333; /* Dark card background color */
+    border-radius: 8px; /* Rounded corners */
+    border: none; /* No border */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); /* Soft shadow */
+    margin-bottom: 20px; /* Margin between cards */
+    transition: transform 0.3s ease; /* Smooth transition */
+}
+
+    .card:hover {
+        transform: translateY(-5px); /* Move card up slightly on hover */
+    }
+
+
+
+
+.form-label{
+    color:grey;
+}
+
+
+
+/* Customize scrollbar */
+/*::-webkit-scrollbar {
+    width: 10px;*/ /* Width of vertical scrollbar */
+/*}*/
+
+/* Track */
+/*::-webkit-scrollbar-track {
+    background: #f1f1f1;*/ /* Color of the scrollbar track */
+/*}*/
+
+/* Handle */
+/*::-webkit-scrollbar-thumb {
+    background: #888;*/ /* Color of scrollbar handle */
+/*}*/
+
+    /* Handle on hover */
+    /*::-webkit-scrollbar-thumb:hover {
+        background: #555;*/ /* Color of scrollbar handle on hover */
+    /*}*/
+
+/* First_MVC_Project.styles.css */
+
+/* Your existing styles */
+
+/* Custom scrollbar styles */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: #121212;
+
+}
+
+::-webkit-scrollbar-thumb {
+    background: #f17014;
+    border-radius: 20px;
+}
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #f17014;
+    }
+
+
+
+
+
+@keyframes slideInFromLeft {
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+/* Apply animation to product cards */
+.product-card {
+    animation: slideInFromLeft 0.5s ease forwards;
+}
+
+
+
+
+.fixx {
+    position:relative ; 
+    left:50%;
+    transform:translate(-50%)
+    
+}
+
+@media screen and (max-width: 480px) {
+    .fixx {
+        position: relative;
+        left: 40%;
+        transform: translate(-50%)
+    }
+}
+

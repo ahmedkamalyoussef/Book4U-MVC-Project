@@ -1,0 +1,48 @@
+﻿@model Product
+<Partial name="_Notification" />
+@* @{
+    //list<Department>==>SeectList:IEnumerable<SelectedListItem>
+    SelectList cattList =
+         new SelectList(ViewBag.categories, "Id", "Name");
+
+} *@
+<div class="card show border-0 mt-4">
+    <div class="card-header  bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h4 class="text-white py-2">Add Product</h4>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <form method="post" asp-controller="Home" asp-action="Create" enctype="multipart/form-data" class="row">
+            <div class="border p-3">
+                <div class="fixx">
+                <Partial name="_EditAndAddProductPartial" model="@Model" />
+
+
+
+                <div class="row justify-content-center mt-4">
+                    <div class="col-6">
+                        <input type="submit" value="Create" class="btn btn-warning form-control" />
+                    </div>
+                </div>
+                <div class="row justify-content-center mt-2">
+                    <div class="col-6">
+                        <a class="btn btn-secondary form-control" asp-action="getall">Back to List</a>
+                    </div>
+               </div>
+            </div>
+        </form>
+    </div>
+</div>
+<hr />
+
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

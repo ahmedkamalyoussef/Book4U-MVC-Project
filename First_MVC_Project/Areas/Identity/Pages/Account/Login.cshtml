@@ -1,0 +1,89 @@
+﻿@page
+@model LoginModel
+
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-warning text-white text-center py-3">
+                    <h2 class="h4 m-0">Login</h2>
+                </div>
+                <div class="card-body p-4">
+                    <form id="account" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input asp-for="Input.Email" id="email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                            <span asp-validation-for="Input.Email" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input asp-for="Input.Password" id="password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="password" />
+                            <span asp-validation-for="Input.Password" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input class="form-check-input" asp-for="Input.RememberMe" id="rememberMe" />
+                            <label class="form-check-label" for="rememberMe">@Html.DisplayNameFor(m => m.Input.RememberMe)</label>
+                        </div>
+                        <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-warning">Log in</button>
+                    </form>
+                    <hr>
+                    <div class="d-flex justify-content-between">
+                        <p class="m-0">
+                            <a class="text-warning" id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+                        </p>
+                        <p class="m-0">
+                            <a class="text-warning" asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+                        </p>
+                    </div>
+                    <hr>
+                    <div>
+                        <h5 class="text-center mb-3">Use another service to log in</h5>
+                        <div class="text-center">
+                            @if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                            {
+                                <p class="text-center">
+                                    There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715" class="text-warning">article</a> about setting up this ASP.NET application to support logging in via external services.
+                                </p>
+                            }
+                            else
+                            {
+                                <div class="d-flex justify-content-center flex-wrap">
+                                    @foreach (var provider in Model.ExternalLogins!)
+                                    {
+                                        <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="mb-2">
+                                            <button type="submit" class="btn btn-outline-warning me-2" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">
+                                                <span class="me-1">@provider.DisplayName</span>
+                                                @if (provider.Name == "Google")
+                                                {
+                                                    <i class="fab fa-google"></i>
+                                                }
+                                                else if (provider.Name == "Facebook")
+                                                {
+                                                    <i class="fab fa-facebook"></i>
+                                                }
+                                                else if (provider.Name == "Twitter")
+                                                {
+                                                    <i class="fab fa-twitter"></i>
+                                                }
+                                                else if (provider.Name == "Microsoft")
+                                                {
+                                                    <i class="fab fa-windows"></i>
+                                                }
+                                                <!-- Add more icons as needed -->
+                                            </button>
+                                        </form>
+                                    }
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

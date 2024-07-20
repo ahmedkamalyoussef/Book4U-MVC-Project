@@ -1,0 +1,237 @@
+﻿@model List<OrdersAndProductVM>
+<Partial name="_Notification" />
+<section class="h-100 h-custom">
+    <div class="container py-3 d-md-none">
+        @foreach (var prod in Model)
+        {
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            @if (prod != null)
+                            {
+                                <img src="@prod.ProductUrl" class="img-fluid rounded-3" style="max-width: 100%;" alt="Book">
+                            }
+                        </div>
+                        <div class="col-md-8">
+                            @if (prod != null)
+                            {
+                                <h5 class="card-title">@prod.Title</h5>
+                                <p class="card-text">@prod.Author</p>
+                                <p class="card-text"><strong>Category:</strong> @prod.CategoryName</p>
+                                <p class="card-text"><strong>Quantity:</strong> @prod.ProductsCount</p>
+                                <p class="card-text"><strong>Price:</strong> @(prod.Productprice * prod.ProductsCount) $</p>
+                            }
+                            else
+                            {
+                                <p class="card-text">Product not available</p>
+                            }
+                            <a asp-controller="Orders" asp-action="delete" asp-route-id="@prod.OrderId" class="btn btn-danger"><i class="bi bi-trash3"></i> Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="container h-100 py-5 d-none d-md-block">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="h5">Shopping Cart</th>
+                                <th scope="col">Category</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Price</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var prod in Model)
+                            {
+                                <tr>
+                                    <th scope="row">
+                                        <div class="d-flex align-items-center">
+                                            @if (prod != null)
+                                            {
+                                                <img src="@prod.ProductUrl" class="img-fluid rounded-3" style="width: 120px;" alt="Book">
+                                            }
+
+                                            <div class="flex-column ms-4">
+                                                @if (prod != null)
+                                                {
+                                                    <p class="mb-2">@prod.Title</p>
+                                                    <p class="mb-0">@prod.Author</p>
+                                                }
+                                                else
+                                                {
+                                                    <p class="mb-2">Product not available</p>
+                                                }
+                                            </div>
+                                        </div>
+                                    </th>
+                                    <td class="align-middle">
+                                        @if (prod != null)
+                                        {
+                                            <p class="mb-0" style="font-weight: 500;">@prod.CategoryName</p>
+                                        }
+                                        else
+                                        {
+                                            <p class="mb-0" style="font-weight: 500;">Category not available</p>
+                                        }
+                                    </td>
+                                    <td class="align-middle">
+                                        <div class="d-flex flex-row">
+                                            <button class="btn btn-link px-2" onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                                                <i class="fas fa-minus"></i>
+                                            </button>
+
+                                            <input id="form1" min="0" name="quantity" value="@prod.ProductsCount" type="number" class="form-control form-control-sm" style="width: 50px;" disabled />
+
+                                            <button class="btn btn-link px-2" onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                    <td class="align-middle">
+                                        @if (prod != null)
+                                        {
+                                            <p class="mb-0" style="font-weight: 500;">@((prod.Productprice * prod.ProductsCount).ToString("0.00")) <span>$</span></p>
+                                        }
+                                        else
+                                        {
+                                            <p class="mb-0" style="font-weight: 500;">Price not available</p>
+                                        }
+
+                                    </td>
+                                    <td class="align-middle">
+                                        <a asp-controller="Orders" asp-action="delete" asp-route-id="@prod.OrderId" class="btn btn-danger mx-2"><i class="bi bi-trash3"></i> Delete</a>
+                                    </td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+                <div class="card shadow-2-strong mb-5 mb-lg-0" style="border-radius: 16px;">
+                    <div class="card-body p-4">
+
+                        <div class="row">
+                            <div class="col-md-6 col-lg-4 col-xl-3 mb-4 mb-md-0">
+                                <form>
+                                    <div class="d-flex flex-row pb-3">
+                                        <div class="d-flex align-items-center pe-2">
+                                            <input class="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel1v"
+                                                   value="" aria-label="..." checked />
+                                        </div>
+                                        <div class="rounded border w-100 p-3">
+                                            <p class="d-flex align-items-center mb-0">
+                                                <i class="fab fa-cc-mastercard fa-2x text-dark pe-2"></i>Credit
+                                                Card
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-row pb-3">
+                                        <div class="d-flex align-items-center pe-2">
+                                            <input class="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel2v"
+                                                   value="" aria-label="..." />
+                                        </div>
+                                        <div class="rounded border w-100 p-3">
+                                            <p class="d-flex align-items-center mb-0">
+                                                <i class="fab fa-cc-visa fa-2x fa-lg text-dark pe-2"></i>Debit Card
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-row">
+                                        <div class="d-flex align-items-center pe-2">
+                                            <input class="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel3v"
+                                                   value="" aria-label="..." />
+                                        </div>
+                                        <div class="rounded border w-100 p-3">
+                                            <p class="d-flex align-items-center mb-0">
+                                                <i class="fab fa-cc-paypal fa-2x fa-lg text-dark pe-2"></i>PayPal
+                                            </p>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-md-6 col-lg-4 col-xl-6">
+                                <div class="row">
+                                    <div class="col-12 col-xl-6">
+                                        <div class="form-outline mb-4 mb-xl-5">
+                                            <input type="text" id="typeName" class="form-control form-control-lg" siez="17"
+                                                   placeholder="John Smith" />
+                                            <label class="form-label" for="typeName">Name on card</label>
+                                        </div>
+
+                                        <div class="form-outline mb-4 mb-xl-5">
+                                            <input type="text" id="typeExp" class="form-control form-control-lg" placeholder="MM/YY"
+                                                   size="7" id="exp" minlength="7" maxlength="7" />
+                                            <label class="form-label" for="typeExp">Expiration</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-xl-6">
+                                        <div class="form-outline mb-4 mb-xl-5">
+                                            <input type="text" id="typeText" class="form-control form-control-lg" siez="17"
+                                                   placeholder="1111 2222 3333 4444" minlength="19" maxlength="19" />
+                                            <label class="form-label" for="typeText">Card Number</label>
+                                        </div>
+
+                                        <div class="form-outline mb-4 mb-xl-5">
+                                            <input type="password" id="typeText" class="form-control form-control-lg"
+                                                   placeholder="&#9679;&#9679;&#9679;" size="1" minlength="3" maxlength="3" />
+                                            <label class="form-label" for="typeText">Cvv</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @{
+                                double total = 0;
+                                foreach(var prod in Model)
+                                {
+                                    total += (prod.Productprice * prod.ProductsCount);
+                                }
+                                double totaltax = total + (total * 0.01);
+                            }
+                            <div class="col-lg-4 col-xl-3">
+                                <div class="d-flex justify-content-between" style="font-weight: 500;">
+                                    <p class="mb-2">Subtotal</p>
+                                    <p class="mb-2">$@(total.ToString("0.00"))</p>
+                                </div>
+
+                                <div class="d-flex justify-content-between" style="font-weight: 500;">
+                                    <p class="mb-0">Shipping</p>
+                                    <p class="mb-0">$@((total * 0.01).ToString("0.00"))</p>
+                                </div>
+
+                                <hr class="my-4">
+
+                                <div class="d-flex justify-content-between mb-4" style="font-weight: 500;">
+                                    <p class="mb-2">Total (tax included)</p>
+                                    <p class="mb-2">$@(totaltax.ToString("0.00"))</p>
+                                </div>
+
+                                <button type="button" class="btn btn-warning btn-block btn-lg">
+                                    <div class="d-flex justify-content-between">
+                                        <span>Checkout</span>
+                                        <span>$@(totaltax.ToString("0.00"))</span>
+                                    </div>
+                                </button>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
