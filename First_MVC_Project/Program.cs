@@ -33,27 +33,22 @@ builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IEmailSender, EmailSender>();
 
-//var googleClientId = builder.Configuration["secrets:google:ClientId"];
-//var googleClientSecret = builder.Configuration["secrets:google:ClientSecret"];
-//var facebookClientId = builder.Configuration["secrets:facebook:ClientId"];
-//var facebookClientSecret = builder.Configuration["secrets:facebook:ClientSecret"];
-//var twitterConsumerKey = builder.Configuration["secrets:twitter:ConsumerKey"];
-//var twitterConsumerSecret = builder.Configuration["secrets:twitter:ConsumerSecret"];
+var googleClientId = builder.Configuration["secrets:google:ClientId"];
+var googleClientSecret = builder.Configuration["secrets:google:ClientSecret"];
+var facebookClientId = builder.Configuration["secrets:facebook:ClientId"];
+var facebookClientSecret = builder.Configuration["secrets:facebook:ClientSecret"];
 
-//// Add authentication services
-//builder.Services.AddAuthentication().AddFacebook(options =>
-//{
-//    options.ClientId = facebookClientId;
-//    options.ClientSecret = facebookClientSecret;
-//}).AddTwitter(options =>
-//{
-//    options.ConsumerKey = twitterConsumerKey;
-//    options.ConsumerSecret = twitterConsumerSecret;
-//}).AddGoogle(options =>
-//{
-//    options.ClientId = googleClientId;
-//    options.ClientSecret = googleClientSecret;
-//});
+
+// Add authentication services
+builder.Services.AddAuthentication().AddFacebook(options =>
+{
+    options.ClientId = facebookClientId;
+    options.ClientSecret = facebookClientSecret;
+}).AddGoogle(options =>
+{
+    options.ClientId = googleClientId;
+    options.ClientSecret = googleClientSecret;
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
